@@ -1,10 +1,13 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
+import { removeFeature } from '../actions/featureActions';
+
 const AddedFeature = props => {
 
   const handleRemoveFeature = () => {
-    return;
-    //build this out
+    props.removeFeature(props.feature)
   }
 
   return (
@@ -15,4 +18,10 @@ const AddedFeature = props => {
   );
 };
 
-export default AddedFeature;
+const mapStateToProps = state => {
+  return {
+    additionalFeatures: state.additionalFeatures
+  }
+}
+
+export default connect(mapStateToProps, { removeFeature })(AddedFeature);
